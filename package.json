@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "NODE_ENV=production webpack",
-    "dev": "NODE_ENV=development webpack serve --open --hot --progress --color & nodemon server/server.js"
+    "start": "NODE_ENV=production && node src/server/server.js",
+    "dev": "NODE_ENV=development webpack serve --open --hot --progress --color & nodemon src/server/server.js"
   },
   "repository": {
     "type": "git",
@@ -37,6 +38,7 @@
   "dependencies": {
     "@testing-library/jest-dom": "^5.15.0",
     "@testing-library/react": "^13.4.0",
+    "bcrypt": "^5.1.0",
     "bcryptjs": "^2.3.0",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",

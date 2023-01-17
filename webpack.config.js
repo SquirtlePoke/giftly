@@ -2,12 +2,13 @@ const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
+  mode: process.env.NODE_ENV,
   entry: "./src/index.js",
   output: {
-    path: path.resolve(__dirname, "/dist"),
+    path: path.resolve(__dirname, "dist"),
     filename: "bundle.js",
+    publicPath: "/dist",
   },
-  mode: process.env.NODE_ENV,
   module: {
     rules: [
       {
@@ -26,6 +27,8 @@ module.exports = {
     ],
   },
 
+  devtool: "source-map",
+
   devServer: {
     static: {
       directory: path.join(__dirname, "dist"),
@@ -38,8 +41,9 @@ module.exports = {
 
   plugins: [
     new HtmlWebpackPlugin({
+      filename: "index.html",
+      // publicPath: "/dist",
       template: "./src/index.html",
-      // filename: 'index.html'
     }),
   ],
 };
