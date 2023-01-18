@@ -1,8 +1,12 @@
 const express = require("express");
+
 const cookieController = require("../controllers/cookieController");
+const collectionController = require('../controllers/collectionController');
+const userController = require("../controllers/userController");
+
+
 const router = express.Router();
 
-const userController = require("../controllers/userController");
 
 router.post(
   "/signup",
@@ -22,15 +26,16 @@ router.post(
   "/login",
   // userController.validateUsername,
   userController.validatePassword,
-  cookieController.setCookie,
+  // cookieController.setCookie,
   (req, res) => {
-    if (res.locals.validPassword && res.locals.validUsername) {
-      return res.status(200).json({
-        username: res.locals.username,
-      });
-    } else {
-      res.status(501).send("Error logging in, wrong username or password");
-    }
+    // if (res.locals.validPassword && res.locals.validUsername) {
+    //   return res.status(200).json({
+    //     username: res.locals.username,
+    //   });
+    // } else {
+    //   res.status(501).send("Error logging in, wrong username or password");
+    // }
+    return res.status(200)
   }
 );
 
