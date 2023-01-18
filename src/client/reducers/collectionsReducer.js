@@ -6,12 +6,12 @@ const collectionsSlice = createSlice({
     collections: [],
   },
   reducers: {
-    update: (state, action) => { 
+    updateCollection: (state, action) => { 
       state.collections = action.payload;
     },
   },
 });
 
-export const { update } = collectionsSlice.actions;
+export const { updateCollection } = collectionsSlice.actions;
 
 export default collectionsSlice.reducer;
