@@ -3,7 +3,7 @@ import React from "react";
 export default function ItemsTable(props) {
   const { tableData } = props;
   return (
-    <div className="overflow-x-auto">
+    <div className="overflow-x-auto shadow-xl">
       <table className="table w-full">
         <thead>
           <tr>
