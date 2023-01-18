@@ -81,7 +81,11 @@ userController.validatePassword = (req, res, next) => {
         // res.locals.validPassword = isMatch ? true : false;
         res.locals.userID = data.rows[0].user_id;
         console.log(res.locals.userID)
+        res.locals.status = 200
         return next();
+      }
+      else {
+        res.locals.status = 400
       }
       // console.log(data.rows[0]);
       // res.locals.userID = data.rows[0].user_id;

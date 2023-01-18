@@ -8,7 +8,11 @@ router.get('/', collectionController.getCollections, (req, res) => {
 })
 
 router.post('/', collectionController.createCollections, (req, res) => {
-  return res.status(200)
+  return res.status(200).json(res.locals.newCollection);
 })
 
-module.exports = router;
+router.delete('/', collectionController.deleteCollection, (req, res) => {
+  return res.status(200).json(res.locals.deletedCollection)
+})
+
+module.exports = router; 
