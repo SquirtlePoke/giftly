@@ -22,4 +22,21 @@ collectionController.getCollections = async (req, res, next) => {
   }
 }
 
+collectionController.createCollections = async (req, res, next) => {
+  const userID = req.query.user_id;
+  const { name } = req.body;
+  console.log('userID', userID);
+  const queryText = ``;
+  const values = [userID];
+  try {
+    await db.query(queryText, values);
+    return next();
+  } catch (error) {
+    return next({
+      log: "An error occured in collectionController.createCollections",
+      message: {err: 'Error creating collection'},
+    })
+  }
+}
+
 module.exports = collectionController;
