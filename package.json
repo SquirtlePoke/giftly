@@ -1,5 +1,5 @@
 {
-  "name": "squash",
+  "name": "giftly",
   "version": "1.0.0",
   "description": "",
   "main": "webpack.config.js",
@@ -10,14 +10,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/SquirtlePoke/Squash.git"
+    "url": "git+https://github.com/SquirtlePoke/giftly.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/SquirtlePoke/Squash/issues"
+    "url": "https://github.com/SquirtlePoke/giftly/issues"
   },
-  "homepage": "https://github.com/SquirtlePoke/Squash#readme",
+  "homepage": "https://github.com/SquirtlePoke/giftly#readme",
   "devDependencies": {
     "@babel/core": "^7.20.5",
     "@babel/preset-env": "^7.20.2",

@@ -1,1 +1,1 @@
-# Squash
+# Giftly
