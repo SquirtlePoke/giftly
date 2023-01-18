@@ -12,7 +12,7 @@ export default function CollectionsView() {
     fetch(`http://localhost:3000/collections?user_id=${""}`)
     .then(serverResponse => serverResponse.json())
     .then(responseJson => dispatch(update(responseJson)))
-    .catch(err => console.error(err));
+    .catch(err => console.warn(err));
   }, [])
 
   return (
