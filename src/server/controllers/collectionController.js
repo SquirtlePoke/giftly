@@ -5,7 +5,7 @@ const collectionController = {};
 collectionController.getCollections = async (req, res, next) => {
   const userID = res.locals.userID;
   console.log('userID', userID)
-  const queryText = "SELECT name FROM collections WHERE user_id = $1";
+  const queryText = "SELECT name, collection_id FROM collections WHERE user_id = $1";
   const values = [userID]
 
   try {
