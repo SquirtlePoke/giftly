@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import { useSelector } from "react-redux";
 
-export default function AddCollectionForm() {
+export default function AddCollectionForm(props) {
   // const { user_id } = useSelecter((state) => state.user);
   const user_id = 11;
   const nameRef = useRef("");
@@ -13,6 +13,8 @@ export default function AddCollectionForm() {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ name: nameRef.current.value })
     });
+    props.setFormVisible(false);
+    return;
   };
 
   return (
@@ -37,6 +39,7 @@ export default function AddCollectionForm() {
               {/* <span className="label-text-alt">Alt label</span> */}
             </form>
             <div className="card-actions justify-end">
+              <button onClick={() => props.setFormVisible(false)} className="btn btn-primary">Cancel</button>
               <button onClick={createNewCollection} className="btn btn-primary">Create</button>
             </div>
           </div>

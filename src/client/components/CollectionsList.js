@@ -9,7 +9,10 @@ export default function CollectionsList(props) {
       {listData.map((collection) => {
         return (
           <div
-            onClick={() => navigate("/items")}
+            key={crypto.randomUUID()}
+            onClick={() => navigate("/items", { state: {
+              collection_id: collection.collection_id,
+            }})}
             className="cusor-pointer card card-compact bg-base-100 shadow-xl w-full h-72 hover:scale-105 transition-all"
             style={{ cursor: "pointer" }}
           >
@@ -32,7 +35,7 @@ export default function CollectionsList(props) {
       })}
       <div
         onClick={() => {
-          
+          props.setFormVisible(true);
         }}
         className="cusor-pointer card card-compact bg-base-100 shadow-xl w-full h-72 hover:scale-105 transition-all flex justify-center align-middle"
         style={{ cursor: "pointer" }}

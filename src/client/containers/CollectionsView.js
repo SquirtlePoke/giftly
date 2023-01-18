@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import CollectionsList from "../components/CollectionsList.js";
 
@@ -9,6 +9,8 @@ import AddCollectionForm from "../components/AddCollectionForm.js";
 export default function CollectionsView() {
   const { collections } = useSelector((state) => state.collections);
   const dispatch = useDispatch();
+
+  const [formVisible, setFormVisible] = useState(false);
 
   const user_id = 11;
   
@@ -24,11 +26,11 @@ export default function CollectionsView() {
   return (
     <>
       <AuthRequired />
-      {true && <AddCollectionForm />}
+      {formVisible && <AddCollectionForm setFormVisible={setFormVisible} />}
       <h1>CollectionsView</h1>
       {collections?.length && (
         <div className="w-screen justify-center">
-          <CollectionsList listData={collections} />
+          <CollectionsList listData={collections} setFormVisible={setFormVisible} />
         </div>
       )}
     </>
