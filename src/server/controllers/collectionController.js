@@ -22,7 +22,6 @@ collectionController.getCollections = async (req, res, next) => {
   }
 }
 
-<<<<<<< HEAD
 collectionController.createCollections = async (req, res, next) => {
   const userID = req.query.user_id;
   const { name } = req.body;
@@ -40,6 +39,5 @@ collectionController.createCollections = async (req, res, next) => {
   }
 }
 
-=======
->>>>>>> dev
+module.exports = collectionController;
 module.exports = collectionController;
