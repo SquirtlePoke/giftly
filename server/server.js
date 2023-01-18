@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require("express");
 const path = require("path");
 const app = express();
@@ -8,12 +9,7 @@ const cors = require("cors");
 
 app.use(express.json());
 
-app.use(
-  cors({
-    origin: "http://http://localhost:8080/",
-    credentials: true,
-  })
-);
+if (process.env.NODE_ENV === "development") app.use(cors({ origin: "http://localhost:8080", credentials: true }));
 
 app.get("/", (req, res) => {
   res.status(200).sendFile(path.join(__dirname, "../src/index.html"));
