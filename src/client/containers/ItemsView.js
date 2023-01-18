@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { updateItems } from "../reducers/itemsReducer.js";
 import AuthRequired from "./AuthRequired.js";
+import ItemsTable from "../components/ItemsTable.js";
 
 export default function ItemsView() {
   const { items } = useSelector((state) => state.items);
@@ -22,12 +23,34 @@ export default function ItemsView() {
       <h1>ItemsView</h1>
       <button
         onClick={() => {
-          dispatch(updateItems(["item1", "item2", "item3"]));
+          dispatch(updateItems([
+            {
+              item_name: "Candle1",
+              description: "A nice canlde",
+              price: 9.99,
+              link: "http://google.com",
+            },
+            {
+              item_name: "Candelabra",
+              description: "candle holder",
+              price: 9.99,
+              link: "http://google.com",
+            },
+            {
+              item_name: "Incense",
+              description: "stick",
+              price: 9.99,
+              link: "http://google.com",
+            },
+            
+          ]));
         }}
       >
-        update items
+        Fetch items
       </button>
       {JSON.stringify(items)}
+      <br></br>
+      {items?.length && <ItemsTable tableData={items} />}
     </>
   );
 };
