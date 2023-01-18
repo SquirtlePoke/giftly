@@ -9,7 +9,7 @@ import {
 } from "../reducers/counterReducer.js";
 
 const HomeView = () => {
-  const { value } = useSelector((state) => state.counter);
+  const { value } = useSelector(state => state.counter);
   const dispatch = useDispatch();
   return (
     <>
