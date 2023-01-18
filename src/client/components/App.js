@@ -1,6 +1,11 @@
+import "../styles.css"
 import React from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
+
+import Auth from "../containers/Auth"
+import Dashboard from "../containers/Dashboard"
 import NavBar from "../components/NavBar.js";
 import HomeView from "../containers/HomeView.js";
 import CollectionsView from "../containers/CollectionsView.js";
@@ -13,14 +18,16 @@ const Placeholder = () => {
 }
 
 const App = () => {
+  const { isAuthenticated } = useSelector((state) => state.auth)
+
   return (
     <>
       <BrowserRouter>
-
+        { isAuthenticated ? <Dashboard/> : <Auth/> }
         {/* Static content that persists across routes */}
         <NavBar />
+        <div></div>
         {/* End of static content */}
-
         {/* Dynamic content based on route */}
         <Routes>
           <Route path="/" element={<HomeView />} />
