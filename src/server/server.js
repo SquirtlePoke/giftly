@@ -18,6 +18,10 @@ app.use(
 );
 app.use(cookieParser());
 
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.resolve(__dirname, "../../dist")));
+}
+
 app.get("/", (req, res) => {
   res.status(200).sendFile(path.join(__dirname, "../../dist/index.html"));
 });
