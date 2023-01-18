@@ -1,27 +1,36 @@
 import React from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
+import { BrowserRouter as Router, Routes, Route, useNavigate } from "react-router-dom";
 
-import { increment, decrement, incrementByAmount } from "../reducers/counterReducer.js"
+import NavBar from "../components/NavBar.js";
+import HomeView from "../containers/HomeView.js";
+import CollectionsView from "../containers/CollectionsView.js";
 
+
+// ! Placeholder for React Routes that don't exist, delete when Routes are implemented
+const Placeholder = () => {
+  return <h1>Placeholder</h1>
+}
 
 const App = () => {
-  const { value } = useSelector((state) => state.counter)
-  const dispatch = useDispatch();
   return (
-    <BrowserRouter>
-      <h1>App</h1>
-      <button onClick={() => dispatch(decrement())}>
-        Decrement
-      </button>
-      <button onClick={() => dispatch(increment())}>
-        Increment
-      </button>
-      <button onClick={() => dispatch(incrementByAmount(2))}>
-        Increment by 2
-      </button>
-      <h2>Counter value: {value}</h2>
-    </BrowserRouter>
+    <>
+      <Router>
+
+        {/* Static content that persists across routes */}
+        <NavBar />
+        {/* End of static content */}
+
+        {/* Dynamic content based on route */}
+        <Routes>
+          <Route path="/" element={<HomeView />} />
+          <Route path="/login" element={<Placeholder />} />
+          <Route path="/signup" element={<Placeholder />} />
+          <Route path="/collections" element={<CollectionsView />} />
+        </Routes>
+        {/* End of dynamic content */}
+
+      </Router>
+    </>
   );
 };
 
