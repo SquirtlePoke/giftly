@@ -4,6 +4,7 @@ const app = express();
 const PORT = 3000;
 
 const userRouter = require("./routers/userRouter.js");
+const collectionRouter = require("./routers/collectionRouter.js")
 
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
@@ -22,6 +23,8 @@ app.get("/", (req, res) => {
 });
 
 app.use("/users", userRouter);
+
+app.use("/collections", collectionRouter);
 
 app.use("*", (req, res) => {
   res.status(404).send("Not Found");

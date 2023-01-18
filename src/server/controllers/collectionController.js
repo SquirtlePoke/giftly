@@ -3,7 +3,8 @@ const db = require("../models.js");
 const collectionController = {};
 
 collectionController.getCollections = async (req, res, next) => {
-  const userID = res.locals.userID;
+  const userID = req.query.user_id
+  // const userID = res.locals.userID;
   console.log('userID', userID)
   const queryText = "SELECT name, collection_id FROM collections WHERE user_id = $1";
   const values = [userID]
