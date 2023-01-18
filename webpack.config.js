@@ -2,12 +2,13 @@ const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
+  mode: process.env.NODE_ENV,
   entry: "./src/client/index.js",
   output: {
     path: path.resolve(__dirname, "./dist"),
     filename: "bundle.js",
+    publicPath: "/dist",
   },
-  mode: process.env.NODE_ENV,
   module: {
     rules: [
       {
@@ -21,10 +22,12 @@ module.exports = {
       {
         test: /\.s?css/,
         exclude: /node_modules/,
-        use: ["style-loader", "css-loader", "sass-loader"],
+        use: ["style-loader", "css-loader", "sass-loader", "postcss-loader"],
       },
     ],
   },
+
+  devtool: "source-map",
 
   devServer: {
     static: {

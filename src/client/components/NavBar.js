@@ -35,6 +35,13 @@ const NavBar = () => {
       >
         Sign Up
       </button>
+      <button
+        onClick={() => {
+          navigate("/secret");
+        }}
+      >
+        Secret
+      </button>
     </>
   );
 };
