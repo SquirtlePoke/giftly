@@ -1,22 +1,16 @@
-import React from 'react';
-import { useSelector, useDispatch } from "react-redux";
-import { updateAuthenticated, updateAuthorized } from "../reducers/authReducer.js";
+import React from "react";
+import Login from "../components/Login"
+import Signup from "../components/Signup"
+import { useSelector } from "react-redux";
 
-export default function LoginView() {
-  const { isAuthenticated, isAuthorized } = useSelector(state => state.auth);
-  const dispatch = useDispatch();
+const Auth = () => {
+  const { login } = useSelector(state => state.auth)
+
   return (
     <>
-      <br></br>
-      Is Authenticated? {`${isAuthenticated}`}
-      <button onClick={() => dispatch(updateAuthenticated(!isAuthenticated))}>
-        Toggle Authentication
-      </button>
-      <br></br>
-      Is Authorized? {`${isAuthorized}`}
-      <button onClick={() => dispatch(updateAuthorized(!isAuthorized))}>
-        Toggle Authentication
-      </button>
+      { login ? <Login/> : <Signup/>}
     </>
-  );
+  )
 }
+
+export default Auth;
