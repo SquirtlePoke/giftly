@@ -1,5 +1,5 @@
 {
-  "name": "squash",
+  "name": "giftly",
   "version": "1.0.0",
   "description": "",
   "main": "webpack.config.js",
@@ -7,18 +7,18 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "NODE_ENV=production webpack",
     "start": "NODE_ENV=production && node src/server/server.js",
-    "dev": "NODE_ENV=development webpack serve --open --hot --progress --color & nodemon src/server/server.js"
+    "dev": "NODE_ENV=development webpack serve --open --hot --progress --color & NODE_ENV=development nodemon src/server/server.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/SquirtlePoke/Squash.git"
+    "url": "git+https://github.com/SquirtlePoke/giftly.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/SquirtlePoke/Squash/issues"
+    "url": "https://github.com/SquirtlePoke/giftly/issues"
   },
-  "homepage": "https://github.com/SquirtlePoke/Squash#readme",
+  "homepage": "https://github.com/SquirtlePoke/giftly#readme",
   "devDependencies": {
     "@babel/core": "^7.20.5",
     "@babel/preset-env": "^7.20.2",

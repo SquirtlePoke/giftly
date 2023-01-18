@@ -10,13 +10,8 @@ const cors = require("cors");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(
-  cors({
-    origin: "http://http://localhost:8080/",
-    credentials: true,
-  })
-);
 app.use(cookieParser());
+if (process.env.NODE_ENV === "development") app.use(cors({ origin: "http://localhost:8080", credentials: true }));
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.resolve(__dirname, "../../dist")));
