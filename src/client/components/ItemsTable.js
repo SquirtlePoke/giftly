@@ -4,7 +4,7 @@ export default function ItemsTable(props) {
   const { tableData } = props;
   return (
     <div className="overflow-x-auto">
-      <table className="table w-full table-primary">
+      <table className="table w-full">
         <thead>
           <tr>
             <th className="bg-secondary"></th>
