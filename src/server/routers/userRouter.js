@@ -20,7 +20,7 @@ router.post(
 
 router.post(
   "/login",
-  userController.validateUsername,
+  // userController.validateUsername,
   userController.validatePassword,
   cookieController.setCookie,
   (req, res) => {
