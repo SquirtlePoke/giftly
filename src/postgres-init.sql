@@ -1,0 +1,19 @@
+CREATE TABLE users(
+   user_id INT GENERATED ALWAYS AS IDENTITY,
+   first_name VARCHAR(50) NOT NULL,
+   last_name VARCHAR(50) NOT NULL,
+   email VARCHAR(100) NOT NULL,
+   password VARCHAR(50) NOT NULL,
+   created_at TIMESTAMP DEFAULT NOW(),
+   PRIMARY KEY(user_id)
+);
+
+CREATE TABLE items(
+  item_id INT GENERATED ALWAYS AS IDENTITY,
+  item_name VARCHAR(50) NOT NULL,
+  price VARCHAR(50) NOT NULL,
+  description VARCHAR(200) NOT NULL,
+  link VARCHAR(500) NOT NULL,
+  FOREIGN KEY(user_id),
+  PRIMARY KEY(item_id)
+)
