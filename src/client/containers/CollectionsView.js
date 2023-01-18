@@ -11,7 +11,7 @@ export default function CollectionsView() {
   
   // * On componentDidMount, GET the list of collections from the server for the current user
   useEffect(() => {
-    fetch(`http://localhost:3000/collections?user_id=${""}`)
+    fetch(`http://localhost:3000/collections/?user_id=${""}`)
     // .then(serverResponse => serverResponse.json())
     // .then(responseJson => dispatch(updateCollection(responseJson)))
     .then(responseJson => dispatch(updateCollection([{ name: "Collection 1", item_count: 20 },{ name: "Collection Two", item_count: 20 },{ name: "Third Collection", item_count: 13 }])))

@@ -11,7 +11,7 @@ export default function ItemsView() {
   
   // * On componentDidMount, GET the list of items from the server for the current collection
   useEffect(() => {
-    fetch(`http://localhost:3000/items?collection_id=${""}`)
+    fetch(`http://localhost:3000/items/?collection_id=${""}`)
     // .then(serverResponse => serverResponse.json())
     // .then(responseJson => dispatch(updateItems(responseJson)))
     .then(() => dispatch(updateItems([

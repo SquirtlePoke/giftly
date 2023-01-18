@@ -5,12 +5,12 @@ export default function CollectionsList(props) {
   const { listData } = props;
   const navigate = useNavigate();
   return (
-    <div className="w-full flex flex-col gap-y-8">
+    <div className="w-full grid grid-cols-3 gap-12 p-12">
       {listData.map((collection) => {
         return (
-          <div 
+          <div
             onClick={() => navigate("/items")}
-            className="cusor-pointer card card-compact bg-base-100 shadow-xl w-[30%]"
+            className="cusor-pointer card card-compact bg-base-100 shadow-xl w-full h-72 hover:scale-105 transition-all"
             style={{ cursor: "pointer" }}
           >
             <figure>
@@ -25,12 +25,20 @@ export default function CollectionsList(props) {
             <div className="card-body">
               <h2 className="card-title">{collection.name}</h2>
               <p>{collection.item_count} items</p>
-              <div className="card-actions justify-end">
-              </div>
+              <div className="card-actions justify-end"></div>
             </div>
           </div>
-        )
+        );
       })}
+      <div
+        onClick={() => {
+          
+        }}
+        className="cusor-pointer card card-compact bg-base-100 shadow-xl w-full h-72 hover:scale-105 transition-all flex justify-center align-middle"
+        style={{ cursor: "pointer" }}
+      >
+        Add a new collection
+      </div>
     </div>
   );
 }
