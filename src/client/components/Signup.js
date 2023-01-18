@@ -2,6 +2,7 @@ import React, { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { updateAuthenticated } from "../reducers/authReducer";
+import { updateUserId } from "../reducers/userReducer";
 import { toggleLogin } from "../reducers/authReducer"
 
 const Login = () => {
@@ -27,6 +28,7 @@ const Login = () => {
       })
     })
     if (data) {
+      dispatch(updateUserId(11))
       dispatch(updateAuthenticated(true))
       navigate("/collections")
     }
