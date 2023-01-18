@@ -5,9 +5,7 @@ import { useSelector } from "react-redux";
 
 import LoginView from "../containers/LoginView"
 import NavBar from "../components/NavBar.js";
-import HomeView from "../containers/HomeView.js";
 import CollectionsView from "../containers/CollectionsView.js";
-import Login from "../components/Login.js"
 import SecretView from "../containers/SecretView.js";
 
 // ! Placeholder for React Routes that don't exist, delete when Routes are implemented

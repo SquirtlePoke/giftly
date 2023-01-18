@@ -1,18 +1,22 @@
 import React, { useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { updateAuthenticated } from "../reducers/authReducer";
+import { updateUserId } from "../reducers/userReducer";
 import { toggleLogin } from "../reducers/authReducer"
 
 const Login = () => {
   const { login } = useSelector(state => state.auth)
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const emailRef = useRef('')
   const passRef = useRef('')
 
-  const verifyUser = (e) => {
+  const verifyUser = async (e) => {
     e.preventDefault();
-    fetch('/users/login', {
+    console.log("before fetch")
+    const data = await fetch('/users/login', {
       method: "POST",
       headers: { 'Content-Type': 'Application/JSON' },
       body: JSON.stringify({
@@ -20,14 +24,11 @@ const Login = () => {
         password: passRef.current.value
       })
     })
-    .then(res => res.json())
-    .then(data => {
-      console.log(data, "DATA")
-      if (data.username) {
-        console.log(data.username);
-        dispatch(updateAuthenticated(true))
-      }
-    })
+    if (data.status === 200) {
+      dispatch(updateUserId(11))
+      dispatch(updateAuthenticated(true))
+      navigate("/collections")
+    }
   }
 
   return (
@@ -50,10 +51,10 @@ const Login = () => {
                   <label className="label">
                     <span className="label-text">Password</span>
                   </label>
-                  <input ref={passRef} type="text" placeholder="Password" className="input input-bordered" />
+                  <input ref={passRef} type="password" placeholder="Password" className="input input-bordered" />
                 </div>
                 <div className="form-control mt-6">
-                  <button className="btn btn-primary">Login</button>  
+                  <button onClick={(e) => verifyUser(e)} className="btn btn-primary">Login</button>  
                 </div>
                 <div>
                   <button className="w-full text-center text-sm" onClick={() => dispatch(toggleLogin(false))}>

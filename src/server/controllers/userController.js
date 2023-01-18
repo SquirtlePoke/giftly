@@ -36,7 +36,7 @@ userController.createUser = async (req, res, next) => {
   // console.log('values', values);
   await db.query(queryText, values)
       .then((data) => {
-        // res.locals.user = true;
+        res.locals.user = true;
         return next();
       })
     .catch((error) => {

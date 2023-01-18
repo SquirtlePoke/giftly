@@ -1,4 +1,5 @@
 import React, { useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { updateAuthenticated } from "../reducers/authReducer";
 import { toggleLogin } from "../reducers/authReducer"
@@ -6,19 +7,16 @@ import { toggleLogin } from "../reducers/authReducer"
 const Login = () => {
   const { login } = useSelector(state => state.auth)
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const emailRef = useRef('')
   const passRef = useRef('')
   const firstNameRef = useRef('')
   const lastNameRef = useRef('')
 
-  const createUser = (e) => {
+  const createUser = async (e) => {
     e.preventDefault();
-    console.log(emailRef.current.value)
-    console.log(passRef.current.value)
-    console.log(firstNameRef.current.value)
-    console.log(lastNameRef.current.value)
-    fetch('/users/signup', {
+    const data = await fetch('/users/signup', {
       method: "POST",
       headers: { 'Content-Type': 'Application/JSON' },
       body: JSON.stringify({
@@ -28,14 +26,10 @@ const Login = () => {
         last_name: lastNameRef.current.value
       })
     })
-    .then(res => res.json())
-    .then(data => {
-      console.log(data, "DATA")
-      if (data.username) {
-        console.log(data.username);
-        dispatch(updateAuthenticated(true))
-      }
-    })
+    if (data) {
+      dispatch(updateAuthenticated(true))
+      navigate("/collections")
+    }
   }
 
   return (
@@ -47,6 +41,7 @@ const Login = () => {
           </div>
           <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
             <div className="card-body">
+              <form onSubmit={(e) => createUser(e)}>
               <div className="form-control">
                 <label className="label">
                   <span className="label-text">Email</span>
@@ -79,6 +74,7 @@ const Login = () => {
                 { login ? "Switch to Signup" : "Switch to Login" }
                 </button>              
               </div>
+              </form>
             </div>
           </div>
         </div>
