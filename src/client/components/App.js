@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route, useNavigate } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import Auth from "../containers/Auth"
 import Dashboard from "../containers/Dashboard"
 import NavBar from "../components/NavBar.js";
@@ -13,9 +13,7 @@ const Placeholder = () => {
 }
 
 const App = () => {
-  const { value } = useSelector((state) => state.counter)
   const { isAuthenticated } = useSelector((state) => state.auth)
-  const dispatch = useDispatch();
 
   return (
     <>
