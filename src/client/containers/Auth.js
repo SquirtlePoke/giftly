@@ -1,10 +1,14 @@
 import React, { useRef } from "react";
 
 const Auth = () => {
+  const emailRef = useRef('')
+  const passRef = useRef('')
 
   const verifyUser = (e) => {
     e.target.value;
   }
+
+
 
   return (
     <div>
@@ -13,12 +17,14 @@ const Auth = () => {
           <li>
             Giftly
           </li>
-          <li>
-            <input onChange={(e) => verifyUser(e)} type="text" placeholder="username"></input>
-          </li>
-          <li>
-            <input onChange={(e) => verifyUser(e)} type="text" placeholder="password"></input>
-          </li>
+          <form onSubmit={() => verifyUser()}>
+            <li>
+              <input ref={emailRef} type="text" placeholder="username"></input>
+            </li>
+            <li>
+              <input ref={passRef} type="text" placeholder="password"></input>
+            </li>
+          </form>
           <li>
             <button>Login</button>
           </li>
