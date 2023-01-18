@@ -9,7 +9,9 @@ router.get('/', itemController.getItems, (req, res) => {
 })
 
 router.post('/', itemController.createItems, (req, res) => {
-  return res.status(200).json(res.locals.newItem);
+  return res.status(200).json({
+    newItem: res.locals.newItem
+  });
 })
 
 router.delete('/', itemController.deleteItems, (req, res) => {

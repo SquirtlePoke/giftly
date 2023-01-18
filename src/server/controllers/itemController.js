@@ -21,19 +21,14 @@ itemController.getItems = async (req, res, next) => {
 }
 
 itemController.createItems = async (req, res, next) => {
-  const collectionID = Number(req.query.collection_id);
+  const collectionID = req.query.collection_id;
   const { name, link, description, image_link, price } = req.body;
   const queryText = `INSERT INTO items (name, collection_id, link, description, image_link, price) VALUES ($1, $2, $3, $4, $5, $6)`;
-  const values = [name, collectionID, link, description, image_link, Number(price)];
-  console.log('create items values', values)
+  const values = [name, collectionID, link, description, image_link, price];
   try {
-    const create = await db.query(queryText, values).catch((err) => {
-      return next({
-        log: "An error occured in creating new item on collection",
-        message: {err: "Error creating item"},
-      })
-    })
-    res.locals.newItem = create.rows ;
+    const create = await db.query(queryText, values)
+    console.log('createeee', create.rows)
+    res.locals.newItem = create.rows[0];
     return next();
   } catch (err) {
     return next({

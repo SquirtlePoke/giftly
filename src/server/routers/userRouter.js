@@ -32,7 +32,7 @@ router.post(
     // } else {
     //   res.status(501).send("Error logging in, wrong username or password");
     // }
-    return res.sendSendStatus(res.locals.status)
+    return res.sendStatus(res.locals.status)
   }
 );
 
