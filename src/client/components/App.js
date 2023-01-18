@@ -1,10 +1,15 @@
+import "../styles.css"
 import React from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
+import Auth from "../containers/Auth"
+import Dashboard from "../containers/Dashboard"
 import NavBar from "../components/NavBar.js";
 import HomeView from "../containers/HomeView.js";
 import ItemsView from "../containers/ItemsView.js";
 import CollectionsView from "../containers/CollectionsView.js";
+import LoginView from "../containers/LoginView.js";
+import SecretView from "../containers/SecretView.js";
 import LoginView from "../containers/LoginView.js";
 import SecretView from "../containers/SecretView.js";
 
@@ -14,12 +19,15 @@ const Placeholder = () => {
 }
 
 const App = () => {
+  const { isAuthenticated } = useSelector((state) => state.auth)
+
   return (
     <>
       <BrowserRouter>
-
+        { isAuthenticated ? <Dashboard/> : <Auth/> }
         {/* Static content that persists across routes */}
         <NavBar />
+        <div></div>
         {/* End of static content */}
 
         {/* Dynamic content based on route; define Routes below */}
