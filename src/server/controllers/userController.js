@@ -15,7 +15,8 @@ userController.validateUsername = (req, res, next) => {
 };
 
 userController.createUser = async (req, res, next) => {
-  const { username, first_name, last_name, email, password } = req.body;
+  const { username, first_name, last_name, password } = req.body;
+  console.log(username, first_name, last_name, password)
   console.log("in createuser middleware");
   console.log("req.body");
   // if (res.locals.validUsername === true) {
@@ -33,7 +34,7 @@ userController.createUser = async (req, res, next) => {
   bcrypt.hash(password, SALT_WORK_FACTOR).then((hashedPass) => {
     const queryText = `INSERT INTO Users (username, first_name, last_name, email, password)
   VALUES ($1, $2, $3, $4, $5) RETURNING *`;
-    const values = [username, first_name, last_name, email, hashedPass];
+    const values = [username, first_name, last_name, hashedPass];
     db.query(queryText, values)
       .then((result) => {
         // res.locals.user = true;
