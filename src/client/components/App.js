@@ -1,6 +1,7 @@
 import "../styles.css"
 import React from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { useSelector } from "react-redux"
 
 import Auth from "../containers/Auth"
 import Dashboard from "../containers/Dashboard"
@@ -8,8 +9,6 @@ import NavBar from "../components/NavBar.js";
 import HomeView from "../containers/HomeView.js";
 import ItemsView from "../containers/ItemsView.js";
 import CollectionsView from "../containers/CollectionsView.js";
-import LoginView from "../containers/LoginView.js";
-import SecretView from "../containers/SecretView.js";
 import LoginView from "../containers/LoginView.js";
 import SecretView from "../containers/SecretView.js";
 
