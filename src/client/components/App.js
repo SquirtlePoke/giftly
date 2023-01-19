@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 import LoginView from "../containers/LoginView"
 import NavBar from "../components/NavBar.js";
 import CollectionsView from "../containers/CollectionsView.js";
+import ItemsView from "../containers/ItemsView.js";
 import SecretView from "../containers/SecretView.js";
 
 // ! Placeholder for React Routes that don't exist, delete when Routes are implemented
@@ -21,10 +22,12 @@ const App = () => {
       <BrowserRouter>  
         {/* Static content that persists across routes */}
         {/* End of static content */}
-        {/* Dynamic content based on route */}
+
+        {/* Dynamic content based on route; define Routes below */}
         <Routes>
           <Route path="/" element={<LoginView />} />
           <Route path="/collections" element={<> <NavBar/><CollectionsView /> </>} />
+          <Route path="/items" element={<ItemsView />} />
           <Route path="/secret" element={<SecretView />} />
           {/* Missing paths redirect to '/' */}
           <Route path="*" element={<Navigate to="/" />} /> 

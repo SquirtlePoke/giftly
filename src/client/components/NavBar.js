@@ -6,7 +6,7 @@ const NavBar = () => {
   const navigate = useNavigate();
 
   return (
-    <>
+    <nav>
       <button
         onClick={() => {
           navigate("/");
@@ -20,6 +20,13 @@ const NavBar = () => {
         }}
       >
         Collections
+      </button>
+      <button
+        onClick={() => {
+          navigate("/items");
+        }}
+      >
+        Items
       </button>
       <button
         onClick={() => {
@@ -42,7 +49,7 @@ const NavBar = () => {
       >
         Secret
       </button>
-    </>
+    </nav>
   );
 };
 
