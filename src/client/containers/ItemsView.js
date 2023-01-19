@@ -11,7 +11,6 @@ export default function ItemsView(props) {
   const dispatch = useDispatch();
 
   const {collection_id} = useLocation().state;
-  console.log(collection_id);
   
   // * On componentDidMount, GET the list of items from the server for the current collection
   useEffect(() => {
