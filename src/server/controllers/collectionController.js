@@ -10,7 +10,6 @@ collectionController.getCollections = async (req, res, next) => {
   const values = [userID]
 
   try {
-    console.log('hello')
     const collectionList = await db.query(queryText, values);
     res.locals.collectionList = collectionList.rows;
     return next()
