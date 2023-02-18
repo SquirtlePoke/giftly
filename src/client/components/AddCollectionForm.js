@@ -2,13 +2,13 @@ import React, { useRef } from "react";
 import { useSelector } from "react-redux";
 
 export default function AddCollectionForm(props) {
-  // const { user_id } = useSelecter((state) => state.user);
-  const user_id = 11;
+  
+  const { user_id } = useSelecter((state) => state.user);
   const nameRef = useRef("");
 
   const createNewCollection = (event) => {
     event.preventDefault();
-    fetch(`http://localhost:3000/collections/?user_id=${user_id}`, {
+    fetch(`/collections/?user_id=${user_id}`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ name: nameRef.current.value })

@@ -15,7 +15,6 @@ const Login = () => {
 
   const verifyUser = async (e) => {
     e.preventDefault();
-    console.log("before fetch")
     const data = await fetch('/users/login', {
       method: "POST",
       headers: { 'Content-Type': 'Application/JSON' },
