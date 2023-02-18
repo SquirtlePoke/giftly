@@ -7,9 +7,9 @@ CREATE TABLE users(
    PRIMARY KEY(user_id)
 );
 CREATE TABLE sessions(
+   user_id INT NOT NULL UNIQUE,
    session_id VARCHAR NOT NULL,
    date_created TIMESTAMPTZ NOT NULL,
-   user_id INT NOT NULL,
    CONSTRAINT fk_user FOREIGN KEY(user_id) REFERENCES users(user_id)
 );
 CREATE TABLE collections(

@@ -1,20 +1,17 @@
 const express = require("express");
 
 const cookieController = require("../controllers/cookieController");
-const collectionController = require('../controllers/collectionController');
 const userController = require("../controllers/userController");
 const router = express.Router();
 
 router.post(
-  "/signup",
+  '/signup',
   userController.createUser,
+  cookieController.setSIDCookie, // ! Needs testing
   (req, res) => {
-    if (res.locals.signupSuccess) {
-      console.log("signup successful")
-      return res.sendStatus(200)
-    } else {
-      return res.status(501).send("Error Signing up");
-    }
+    return res.locals.sigupSuccess
+      ? res.sendStatus(200)
+      : res.status(501).send('Error signing up');
   }
 );
 
@@ -23,9 +20,11 @@ router.post(
   userController.validateUsername,
   userController.validatePassword,
   userController.matchCredentials,
-  // cookieController.setCookie,
+  cookieController.setSIDCookie,
   (req, res) => {
-    return res.locals.loginSuccess ? res.status(200).json(res.locals.user_id) : res.status(403).send("Incorrect username or password");
+    return res.locals.loginSuccess
+      ? res.status(200).json(res.locals.userId)
+      : res.status(403).send('Incorrect username or password');
   }
 );
 

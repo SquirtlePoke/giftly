@@ -42,6 +42,7 @@ userController.validateUsername = (req, res, next) => {
         });
       }
       res.locals.userEntry = dbResponse.rows[0];
+      res.locals.userId = res.locals.userEntry.user_id;
       res.locals.validUsername = dbResponse.rows.length === 1;
       return next();
     })
