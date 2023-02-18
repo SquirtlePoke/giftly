@@ -36,8 +36,36 @@ cookieController.setSIDCookie = (req, res, next) => {
   }
 };
 
-cookieController.validateCookie = async (req, res, next) => {
-  return next();
+cookieController.validateSIDCookie = async (req, res, next) => {
+  try {
+    const sidString = req.cookies?.sid || null;
+    if (sidString === null) {
+      res.locals.validSession = false;
+      res.redirect('/');
+      return next();
+    }
+    let queryText = `
+      SELECT COUNT(*)
+      FROM sessions
+      WHERE session_id='${sidString}';
+    `;
+    db.query(queryText)
+      .then((dbResponse) => {
+        if (dbResponse.rows[0].count != 1) {
+          return next({
+            log: 'cookieController.validateCookie: Invalid session',
+            message: 'Invalid session'
+          })
+        }
+        res.locals.validSession = dbResponse.rows[0].count == 1;
+        return next();
+      });
+  }
+  catch (err) {
+    return next({
+      log: 'cookieController.setCookie: Unknown error'
+    })
+  }
 };
 
 module.exports = cookieController;

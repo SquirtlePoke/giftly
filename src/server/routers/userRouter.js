@@ -17,6 +17,7 @@ router.post(
 
 router.post(
   "/login",
+  // cookieController.validateSIDCookie,
   userController.validateUsername,
   userController.validatePassword,
   userController.matchCredentials,
