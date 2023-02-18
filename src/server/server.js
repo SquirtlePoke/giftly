@@ -35,11 +35,12 @@ app.use("*", (req, res) => {
 
 app.use((err, req, res, next) => {
   const defaultErr = {
-    log: "Express error caught in unknown middleware error",
-    status: 400,
-    message: { err: "an error occured" },
+    log: "Unknown middleware error",
+    status: 500,
+    message: { err: "A server error occurred" },
   };
   const errorObj = Object.assign(defaultErr, err);
+  console.error(errorObj.log)
   return res.status(errorObj.status).send(errorObj.message);
 });
 

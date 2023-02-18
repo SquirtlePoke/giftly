@@ -7,32 +7,25 @@ const router = express.Router();
 
 router.post(
   "/signup",
-  // userController.validateUsername,
   userController.createUser,
   (req, res) => {
-    if (res.locals.user === true) {
+    if (res.locals.signupSuccess) {
+      console.log("signup successful")
       return res.sendStatus(200)
     } else {
       return res.status(501).send("Error Signing up");
     }
-    // return res.sendStatus(200);
   }
 );
 
 router.post(
   "/login",
-  // userController.validateUsername,
+  userController.validateUsername,
   userController.validatePassword,
+  userController.matchCredentials,
   // cookieController.setCookie,
   (req, res) => {
-    // if (res.locals.validPassword && res.locals.validUsername) {
-    //   return res.status(200).json({
-    //     username: res.locals.username,
-    //   });
-    // } else {
-    //   res.status(501).send("Error logging in, wrong username or password");
-    // }
-    return res.sendStatus(res.locals.status)
+    return res.locals.loginSuccess ? res.status(200).json(res.locals.user_id) : res.status(403).send("Incorrect username or password");
   }
 );
 
