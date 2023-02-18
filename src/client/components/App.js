@@ -9,11 +9,6 @@ import CollectionsView from "../containers/CollectionsView.js";
 import ItemsView from "../containers/ItemsView.js";
 import SecretView from "../containers/SecretView.js";
 
-// ! Placeholder for React Routes that don't exist, delete when Routes are implemented
-const Placeholder = () => {
-  return <h1>Placeholder</h1>
-}
-
 const App = () => {
   const { isAuthenticated } = useSelector((state) => state.auth)
 
@@ -23,13 +18,13 @@ const App = () => {
         {/* Static content that persists across routes */}
         {/* End of static content */}
 
-        {/* Dynamic content based on route; define Routes below */}
+        {/* Dynamic content based on route; define each Route below */}
         <Routes>
           <Route path="/" element={<LoginView />} />
           <Route path="/collections" element={<> <NavBar/><CollectionsView /> </>} />
           <Route path="/items" element={<ItemsView />} />
           <Route path="/secret" element={<SecretView />} />
-          {/* Missing paths redirect to '/' */}
+          {/* Missing paths should redirect to '/' */}
           <Route path="*" element={<Navigate to="/" />} /> 
         </Routes>
         {/* End of dynamic content */}
