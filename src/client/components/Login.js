@@ -10,7 +10,7 @@ const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const emailRef = useRef('')
+  const usernameRef = useRef('')
   const passRef = useRef('')
 
   const verifyUser = async (e) => {
@@ -19,7 +19,7 @@ const Login = () => {
       method: "POST",
       headers: { 'Content-Type': 'Application/JSON' },
       body: JSON.stringify({
-        username: emailRef.current.value,
+        username: usernameRef.current.value,
         password: passRef.current.value
       })
     })
@@ -42,9 +42,9 @@ const Login = () => {
               <div className="card-body">
                 <div className="form-control">
                   <label className="label">
-                    <span className="label-text">Email</span>
+                    <span className="label-text">Username</span>
                   </label>
-                  <input ref={emailRef} type="text" placeholder="Email" className="input input-bordered" />
+                  <input ref={usernameRef} type="text" placeholder="Username" className="input input-bordered" />
                 </div>
                 <div className="form-control">
                   <label className="label">
