@@ -21,10 +21,10 @@ itemController.getItems = async (req, res, next) => {
 }
 
 itemController.createItems = async (req, res, next) => {
-  const collectionID = req.query.collection_id;
+  const { collection_id } = req.query;
   const { name, link, description, image_link, price } = req.body;
   const queryText = `INSERT INTO items (name, collection_id, link, description, image_link, price) VALUES ($1, $2, $3, $4, $5, $6)`;
-  const values = [name, collectionID, link, description, image_link, price];
+  const values = [name, collection_id, link, description, image_link, price];
   try {
     const create = await db.query(queryText, values)
     console.log('createeee', create.rows)

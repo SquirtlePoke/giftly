@@ -12,17 +12,19 @@ export default function AddItemForm(props) {
   const priceRef = useRef("");
   const linkRef = useRef("");
   const descriptionRef = useRef("");
-  const imgLinkRef = useRef("");
-  const {collection_id} = useLocation().state;
-  
-
+  const imgLinkRef = useRef(""); 
 
   const createNewItem = (event) => {
     event.preventDefault();
-    fetch(`http://localhost:3000/collections/?user_id=${user_id}`, {
+    fetch(`/items/?collection_id=${props.collection_id}`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ name: nameRef.current.value })
+      body: JSON.stringify({ name: nameRef.current.value, 
+                             link: linkRef.current.value, 
+                             description: descriptionRef.current.value,
+                             image_link: imgLinkRef.current.value,
+                             price: priceRef.current.value,
+                          })
     });
     props.setFormVisible(false);
     return;
@@ -66,7 +68,7 @@ export default function AddItemForm(props) {
               </label>
               <input
                 name="link"
-                type="url"
+                type="text"
                 ref={linkRef}
                 placeholder="Type here"
                 className="input input-bordered w-full max-w-xs"
@@ -88,7 +90,7 @@ export default function AddItemForm(props) {
               </label>
               <input
                 name="imgLink"
-                type="url"
+                type="text"
                 ref={imgLinkRef}
                 placeholder="Type here"
                 className="input input-bordered w-full max-w-xs"

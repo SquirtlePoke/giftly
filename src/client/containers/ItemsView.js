@@ -45,7 +45,7 @@ export default function ItemsView(props) {
   return (
     <>
       <AuthRequired />
-      {formVisible && <AddItemForm setFormVisible={setFormVisible} />}
+      {formVisible && <AddItemForm setFormVisible={setFormVisible} collection_id={collection_id} />}
       <h1>ItemsView</h1>
       <br></br>
       {items?.length && (
