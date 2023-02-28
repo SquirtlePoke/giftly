@@ -1,7 +1,7 @@
 import React from "react";
 
 export default function ItemsTable(props) {
-  const { tableData } = props;
+  const tableData = props.tableData;
   return (
     <div className="overflow-x-auto shadow-xl">
       <table className="table w-full">
@@ -37,6 +37,15 @@ export default function ItemsTable(props) {
           })}
         </thead>
       </table>
+      <div
+        onClick={() => {
+          props.setFormVisible(true);
+        }}
+        className="cursor-pointer card card-compact bg-base-100 shadow-xl w-full h-72 hover:scale-105 transition-all flex justify-center align-middle"
+        style={{ cursor: "pointer" }}
+      >
+        Add a new item
+      </div>
     </div>
   );
 }

@@ -8,7 +8,7 @@ export default function AddCollectionForm(props) {
 
   const createNewCollection = (event) => {
     event.preventDefault();
-    fetch(`http://localhost:3000/collections/?user_id=${user_id}`, {
+    fetch(`/collections/?user_id=${user_id}`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ name: nameRef.current.value })

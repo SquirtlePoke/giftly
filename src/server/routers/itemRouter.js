@@ -10,7 +10,7 @@ router.get('/', itemController.getItems, (req, res) => {
 
 router.post('/', itemController.createItems, (req, res) => {
   return res.status(200).json({
-    newItem: res.locals.newItem
+    newItem: res.locals.newItem,
   });
 })
 
