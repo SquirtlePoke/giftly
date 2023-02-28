@@ -14,6 +14,10 @@ export default function ItemsView(props) {
   const {collection_id} = useLocation().state;
 
   const [formVisible, setFormVisible] = useState(false);
+
+  const updateItems2 = (newItem) => {
+    dispatch(updateItems([...items, newItem]))
+  }
   
   // * On componentDidMount, GET the list of items from the server for the current collection
   useEffect(() => {
@@ -45,7 +49,7 @@ export default function ItemsView(props) {
   return (
     <>
       <AuthRequired />
-      {formVisible && <AddItemForm setFormVisible={setFormVisible} collection_id={collection_id} />}
+      {formVisible && <AddItemForm setFormVisible={setFormVisible} collection_id={collection_id} tableData={items} updateItems2={updateItems2}/>}
       <h1>ItemsView</h1>
       <br></br>
       {items?.length && (

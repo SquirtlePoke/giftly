@@ -1,13 +1,8 @@
 import React, { useRef } from "react";
-import { useSelector } from "react-redux";
-import { useLocation } from "react-router-dom";
 
-import { updateItems } from "../reducers/itemsReducer.js";
-import ItemsTable from "../components/ItemsTable.js";
 
 export default function AddItemForm(props) {
   // const { user_id } = useSelecter((state) => state.user);
-  const user_id = 11;
   const nameRef = useRef("");
   const priceRef = useRef("");
   const linkRef = useRef("");
@@ -25,7 +20,12 @@ export default function AddItemForm(props) {
                              image_link: imgLinkRef.current.value,
                              price: priceRef.current.value,
                           })
-    });
+    })
+    .then(createItemResponse => createItemResponse.json())
+    .then(createItemParsed => {
+      props.updateItems2(createItemParsed.newItem)
+    })
+    .catch(err => console.log(err));
     props.setFormVisible(false);
     return;
   };
