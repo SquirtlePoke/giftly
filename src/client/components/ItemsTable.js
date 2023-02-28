@@ -41,7 +41,7 @@ export default function ItemsTable(props) {
         onClick={() => {
           props.setFormVisible(true);
         }}
-        className="cusor-pointer card card-compact bg-base-100 shadow-xl w-full h-72 hover:scale-105 transition-all flex justify-center align-middle"
+        className="cursor-pointer card card-compact bg-base-100 shadow-xl w-full h-72 hover:scale-105 transition-all flex justify-center align-middle"
         style={{ cursor: "pointer" }}
       >
         Add a new item
