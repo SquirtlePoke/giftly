@@ -36,11 +36,12 @@ export default function ItemsTable(props) {
                 <td className="bg-base-100">
                   <div
                     onClick={() => {
-                      props.setID(index)
+                      props.setID(index);
                       props.setItemFormVisible(true);
                     }}
-                    className="cursor-pointer card card-compact bg-base-100" 
-                    style={{ cursor: "pointer" }}>
+                    className="cursor-pointer card card-compact bg-base-100"
+                    style={{ cursor: "pointer" }}
+                  >
                     EDIT ITEM
                   </div>
                 </td>

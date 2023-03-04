@@ -4,21 +4,22 @@ const itemController = {};
 
 itemController.getItems = async (req, res, next) => {
   const collectionID = req.query.collection_id;
-  
-  const queryText = 'SELECT * FROM items WHERE collection_id = $1 ORDER BY item_id ASC'
+
+  const queryText =
+    "SELECT * FROM items WHERE collection_id = $1 ORDER BY item_id ASC";
   const values = [collectionID];
 
   try {
     const items = await db.query(queryText, values);
     res.locals.items = items.rows;
     return next();
-  } catch(error) {
+  } catch (error) {
     return next({
-      log: 'An error occured in itemController.getItems',
-      message: {err: 'Error getting items'}
-    })
+      log: "An error occured in itemController.getItems",
+      message: { err: "Error getting items" },
+    });
   }
-}
+};
 
 itemController.createItems = async (req, res, next) => {
   const { collection_id } = req.query;
@@ -27,39 +28,39 @@ itemController.createItems = async (req, res, next) => {
                      RETURNING item_id, name, collection_id, link, description, image_link, price`;
   const values = [name, collection_id, link, description, image_link, price];
   try {
-    const create = await db.query(queryText, values)
+    const create = await db.query(queryText, values);
     res.locals.newItem = create.rows[0];
     return next();
   } catch (err) {
     return next({
       log: "An error occured in itemController.createItems",
-      message: {err: "Error creating itemsssss"},
-    })
+      message: { err: "Error creating itemsssss" },
+    });
   }
-}
+};
 
 itemController.deleteItems = async (req, res, next) => {
-const itemID = req.query.item_id;
-const { name } = req.body;
-const queryText = 'DELETE FROM items WHERE name = $1 AND item_id = $2'
-  const values = [name, itemID]
-  
+  const itemID = req.query.item_id;
+  const { name } = req.body;
+  const queryText = "DELETE FROM items WHERE name = $1 AND item_id = $2";
+  const values = [name, itemID];
+
   try {
     await db.query(queryText, values).catch((err) => {
       console.log(err);
       return next({
         log: "An error occured in deleting new item on database",
-        message: {err: "Error deleting item"},
-      })
-    })
+        message: { err: "Error deleting item" },
+      });
+    });
     return next();
   } catch (err) {
     return next({
       log: "An error occured in deleting itemController.deleteitem",
-      message: {err: "Error deleteing item"},
-    })
+      message: { err: "Error deleteing item" },
+    });
   }
-}
+};
 
 itemController.updateItems = async (req, res, next) => {
   const { item_id } = req.query;
@@ -78,15 +79,15 @@ itemController.updateItems = async (req, res, next) => {
     ;`;
 
   try {
-    const create = await db.query(queryText)
+    const create = await db.query(queryText);
     res.locals.newItem = create.rows[0];
     return next();
   } catch (err) {
     return next({
       log: "An error occured in itemController.updateItems",
-      message: {err: "Error updating itemsssss"},
-    })
+      message: { err: "Error updating itemsssss" },
+    });
   }
-}
+};
 
 module.exports = itemController;

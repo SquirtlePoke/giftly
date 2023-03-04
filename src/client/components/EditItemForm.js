@@ -1,7 +1,6 @@
 import React, { useRef } from "react";
 
 export default function EditItemForm(props) {
-  // const { user_id } = useSelecter((state) => state.user);
   const nameRef = useRef("");
   const priceRef = useRef("");
   const linkRef = useRef("");
@@ -38,7 +37,7 @@ export default function EditItemForm(props) {
             img,
             price,
           };
-          props.replaceAllItems(newTable)
+          props.replaceAllItems(newTable);
         }
       })
       .catch((err) => console.log(err));
