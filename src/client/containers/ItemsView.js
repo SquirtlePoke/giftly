@@ -24,25 +24,6 @@ export default function ItemsView(props) {
     fetch(`http://localhost:3000/items/?collection_id=${collection_id}`)
     .then(serverResponse => serverResponse.json())
     .then(responseJson => dispatch(updateItems(responseJson)))
-    // .then(() => dispatch(updateItems([
-    //   {
-    //     item_name: "Candle1",
-    //     description: "A nice canlde",
-    //     price: 9.99,
-    //     link: "http://google.com",
-    //   },
-    //   {
-    //     item_name: "Candelabra",
-    //     description: "candle holder",
-    //     price: 9.99,
-    //     link: "http://google.com",
-    //   },
-    //   {
-    //     item_name: "Incense",
-    //     description: "stick",
-    //     price: 9.99,
-    //     link: "http://google.com",
-    //   },])))
     .catch(err => console.warn(err));
   }, [])
 

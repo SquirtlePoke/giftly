@@ -61,4 +61,33 @@ const queryText = 'DELETE FROM items WHERE name = $1 AND item_id = $2'
   }
 }
 
+itemController.updateItems = async (req, res, next) => {
+  const { item_id } = req.query;
+  const { name, link, description, image_link, price } = req.body;
+  const queryText = `
+    UPDATE 
+      items 
+    SET 
+      name = ${name}, 
+      collection_id = ${collection_id}, 
+      link = ${link}, 
+      description = ${description}, 
+      image_link = ${image_link}, 
+      price = ${price}) 
+    WHERE 
+      item_id = ${item_id}
+    ;`;
+
+  try {
+    const create = await db.query(queryText)
+    res.locals.newItem = create.rows[0];
+    return next();
+  } catch (err) {
+    return next({
+      log: "An error occured in itemController.updateItems",
+      message: {err: "Error updating itemsssss"},
+    })
+  }
+}
+
 module.exports = itemController;

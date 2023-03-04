@@ -9,7 +9,7 @@ router.get('/', itemController.getItems, (req, res) => {
 })
 
 router.post('/', itemController.createItems, (req, res) => {
-  return res.status(200).json({
+  return res.status(200).json({ //should be 201
     newItem: res.locals.newItem,
   });
 })
@@ -18,4 +18,6 @@ router.delete('/', itemController.deleteItems, (req, res) => {
   return res.status(200)
 })
 
-module.exports = router; 
+router.patch('/', itemController.updateItems, (req, res) => {
+  return res.sendStatus(204)
+})
