@@ -5,7 +5,7 @@ const itemController = {};
 itemController.getItems = async (req, res, next) => {
   const collectionID = req.query.collection_id;
   
-  const queryText = 'SELECT * FROM items WHERE collection_id = $1'
+  const queryText = 'SELECT * FROM items WHERE collection_id = $1 ORDER BY item_id ASC'
   const values = [collectionID];
 
   try {
@@ -68,12 +68,11 @@ itemController.updateItems = async (req, res, next) => {
     UPDATE 
       items 
     SET 
-      name = ${name}, 
-      collection_id = ${collection_id}, 
-      link = ${link}, 
-      description = ${description}, 
-      image_link = ${image_link}, 
-      price = ${price}) 
+      name = '${name}', 
+      link = '${link}', 
+      description = '${description}', 
+      image_link = '${image_link}', 
+      price = ${price} 
     WHERE 
       item_id = ${item_id}
     ;`;

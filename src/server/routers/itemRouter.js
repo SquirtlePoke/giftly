@@ -21,3 +21,5 @@ router.delete('/', itemController.deleteItems, (req, res) => {
 router.patch('/', itemController.updateItems, (req, res) => {
   return res.sendStatus(204)
 })
+
+module.exports = router; 
