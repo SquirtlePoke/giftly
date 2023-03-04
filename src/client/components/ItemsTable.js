@@ -12,6 +12,7 @@ export default function ItemsTable(props) {
             <th className="bg-secondary">Description</th>
             <th className="bg-secondary">Price</th>
             <th className="bg-secondary">Link</th>
+            <th className="bg-secondary">Edit</th>
           </tr>
           {tableData.map((item, index) => {
             return (
@@ -32,6 +33,18 @@ export default function ItemsTable(props) {
                 <td className="bg-base-100">{item.description}</td>
                 <td className="bg-base-100">{item.price}</td>
                 <td className="bg-base-100">{item.link}</td>
+                <td className="bg-base-100">
+                  <div
+                    onClick={() => {
+                      props.setID(index);
+                      props.setItemFormVisible(true);
+                    }}
+                    className="cursor-pointer card card-compact bg-base-100"
+                    style={{ cursor: "pointer" }}
+                  >
+                    EDIT ITEM
+                  </div>
+                </td>
               </tr>
             );
           })}

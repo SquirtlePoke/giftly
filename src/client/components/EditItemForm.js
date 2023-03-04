@@ -1,32 +1,47 @@
 import React, { useRef } from "react";
 
-export default function AddItemForm(props) {
-  // const { user_id } = useSelecter((state) => state.user);
+export default function EditItemForm(props) {
   const nameRef = useRef("");
   const priceRef = useRef("");
   const linkRef = useRef("");
   const descriptionRef = useRef("");
   const imgLinkRef = useRef("");
 
-  const createNewItemHandler = (event) => {
+  const updateItem = (event) => {
     event.preventDefault();
-    fetch(`/items/?collection_id=${props.collection_id}`, {
-      method: "POST",
+    const name = nameRef.current.value;
+    const price = priceRef.current.value;
+    const link = linkRef.current.value;
+    const description = descriptionRef.current.value;
+    const img = imgLinkRef.current.value;
+
+    fetch(`/items/?item_id=${props.tableData[props.currID].item_id}`, {
+      method: "PATCH",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        name: nameRef.current.value,
-        link: linkRef.current.value,
-        description: descriptionRef.current.value,
-        image_link: imgLinkRef.current.value,
-        price: priceRef.current.value,
+        name,
+        link,
+        description,
+        img,
+        price,
       }),
     })
-      .then((createItemResponse) => createItemResponse.json())
-      .then((createItemParsed) => {
-        props.createNewItem(createItemParsed.newItem);
+      .then((updateItemResponse) => {
+        if (updateItemResponse.status === 204) {
+          const newTable = structuredClone(props.tableData);
+          newTable[props.currID] = {
+            item_id: props.tableData[props.currID].item_id,
+            name,
+            link,
+            description,
+            img,
+            price,
+          };
+          props.replaceAllItems(newTable);
+        }
       })
       .catch((err) => console.log(err));
-    props.setFormVisible(false);
+    props.setItemFormVisible(false);
     return;
   };
 
@@ -35,8 +50,8 @@ export default function AddItemForm(props) {
       <div className="flex w-fit h-fit align-middle">
         <div className="card w-96 bg-base-100 shadow-xl">
           <div className="card-body">
-            <h2 className="card-title">Add a New Item</h2>
-            <form onSubmit={createNewItemHandler}>
+            <h2 className="card-title">Edit Item</h2>
+            <form onSubmit={updateItem}>
               <label className="label" htmlFor="name">
                 <span className="label-text">Item Name</span>
               </label>
@@ -47,6 +62,7 @@ export default function AddItemForm(props) {
                 placeholder="Type here"
                 className="input input-bordered w-full max-w-xs"
               />
+
               <label className="label" htmlFor="price">
                 <span className="label-text">Item Price</span>
               </label>
@@ -93,16 +109,13 @@ export default function AddItemForm(props) {
             </form>
             <div className="card-actions justify-end">
               <button
-                onClick={() => props.setFormVisible(false)}
+                onClick={() => props.setItemFormVisible(false)}
                 className="btn btn-primary"
               >
                 Cancel
               </button>
-              <button
-                onClick={createNewItemHandler}
-                className="btn btn-primary"
-              >
-                Create
+              <button onClick={updateItem} className="btn btn-primary">
+                Edit
               </button>
             </div>
           </div>

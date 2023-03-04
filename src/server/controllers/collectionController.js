@@ -3,24 +3,22 @@ const db = require("../models.js");
 const collectionController = {};
 
 collectionController.getCollections = async (req, res, next) => {
-  const userID = req.query.user_id
-  // const userID = res.locals.userID;
-  console.log('userID', userID)
-  const queryText = "SELECT name, collection_id FROM collections WHERE user_id = $1";
-  const values = [userID]
+  const userID = req.query.user_id;
+  const queryText =
+    "SELECT name, collection_id FROM collections WHERE user_id = $1";
+  const values = [userID];
 
   try {
-    console.log('hello')
     const collectionList = await db.query(queryText, values);
     res.locals.collectionList = collectionList.rows;
-    return next()
+    return next();
   } catch (error) {
     return next({
-      log: 'An error occured in collectionController.getCollections',
-      message: { err: 'ERROR getting collection list' }
-    })
+      log: "An error occured in collectionController.getCollections",
+      message: { err: "ERROR getting collection list" },
+    });
   }
-}
+};
 
 collectionController.createCollections = async (req, res, next) => {
   const userID = req.query.user_id;
@@ -33,18 +31,18 @@ collectionController.createCollections = async (req, res, next) => {
       console.log(err);
       return next({
         log: "An error occured in creating new collection on database",
-        message: {err: "Error creating collection"},
-      })
-    })
+        message: { err: "Error creating collection" },
+      });
+    });
     res.locals.newCollection = name;
     return next();
   } catch (err) {
-      return next({
-        log: "An error occured in collectionController.createCollections",
-        message: {err: 'Error creating collection'},
-      })
-    }
-}
+    return next({
+      log: "An error occured in collectionController.createCollections",
+      message: { err: "Error creating collection" },
+    });
+  }
+};
 
 collectionController.deleteCollection = async (req, res, next) => {
   const collectionID = req.query.collection_id;
@@ -57,17 +55,16 @@ collectionController.deleteCollection = async (req, res, next) => {
       console.log(err);
       return next({
         log: "An error occured in creating new collection on database",
-        message: {err: "Error deleting collection"},
-      })
-    })
+        message: { err: "Error deleting collection" },
+      });
+    });
     return next();
-    
   } catch (err) {
     return next({
       log: "An error occured in collection Controller.deleteCollection",
-      message: {err: "Error deleteing collection"},
-    })
+      message: { err: "Error deleteing collection" },
+    });
   }
-}
+};
 
 module.exports = collectionController;
